@@ -8,6 +8,7 @@ import Shopcart from './components/Shopcart/Shopcart.vue';
 import Search from './components/Search/Search.vue';
 import MyUl from './components/Commons/MyUl.vue';
 import MyLi from './components/Commons/MyLi.vue';
+import NewList from './components/News/NewList.vue';
 // 设置全局组件
 // 组件名称，组件
 Vue.component(MyUl.name, MyUl);
@@ -23,6 +24,9 @@ router.addRoutes([
       name: 'home'
     }
   }, {
+    name: 'new.list', path: '/new/list', component: NewList
+  },
+  {
     name: 'home', path: '/home', component: Home
   },
   {
