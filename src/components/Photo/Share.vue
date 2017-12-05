@@ -4,20 +4,20 @@
         <!-- 引入返回导航 -->
         <div class="photo-header">
             <ul>
-                <li v-for="cate in imgcate" :key="cate.id">
-                    <a href="javascript:;">{{cate.title}}</a>
+                <li v-for="cate in imgcate" :key="cate.id" >
+                    <a href="javascript:;" @click="change(cate.id)">{{cate.title}}</a>
                 </li>
             </ul>
         </div>
         <div class="photo-list">
             <ul>
-                <li>
+                <li v-for="images in images" :key="images.id">
                     <a>
-                        <img src="">
+                        <img :src="images.img_url">
                         <p>
-                            <span>图片标题</span>
+                            <span>{{images.title}}</span>
                             <br>
-                            <span>图片摘要</span>
+                            <span>{{images.zhaiyao}}</span>
                         </p>
                     </a>
                 </li>
@@ -29,15 +29,37 @@
   export default {
     data() {
       return {
-        imgcate: []
+        imgcate: [],
+        images: []
+      }
+    },
+    methods: {
+      change(id) {
+        this.$axios.get('getimages/' + id)
+        .then(res => {
+          this.images = res.data.message;
+          if (res.data.message.length == 0) {
+            this.$toast({
+              message: '没有图片咯',
+              duration: 3000
+            });
+          }
+        })
       }
     },
     created() {
-      this.$axios.get('getimgcategory')
-      .then(res => {
-        console.log(res)
-        this.imgcate = res.data.message;
-      })
+      this.$axios.all([
+        this.$axios.get('getimgcategory'),
+        this.$axios.get('getimages/0')
+      ])
+      .then(this.$axios.spread((imgcateres, imagesres) => {
+        console.log(imgcateres);
+        console.log(imagesres);
+        // 图文分类
+        this.imgcate = imgcateres.data.message;
+        // 图文列表
+        this.images = imagesres.data.message;
+      }))
     }
   }
 </script>

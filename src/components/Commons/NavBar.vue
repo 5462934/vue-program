@@ -1,7 +1,7 @@
 <template>
   <div class="cms-s-header">
-        <h1 @click="back">&nbsp<</h1>
-        <h1 class="page-title">{{title}}</h1>
+        <div @click="back"><img class="back" src="../../static/img/back.png" alt=""></div>
+        <span class="page-title">{{title}}</span>
   </div> 
 </template>
 <script>
@@ -16,23 +16,21 @@
   }
 </script>
 <style scoped>
-
+.back {
+  width: 20px;
+  margin-left: 15px;
+  margin-top: 10px
+}
 .cms-s-header {
   height: 40px;
   background-color: #f0f0f0;
 }
-.tmpl h1 {
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
+
 .page-title {
+  margin-left: 40%;
   position: absolute;
-  left: 40%;
-  font-size: 20px;
-  
+  top: 50px;
 }
+
 </style>
 
