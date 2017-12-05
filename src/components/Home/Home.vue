@@ -40,7 +40,7 @@ export default {
         {
           className: "goods",
           title: "商品列表",
-          router: { name: 'new.list' }
+          router: { name: 'goods.list' }
         },
         {
           className: "feedback",

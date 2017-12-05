@@ -9,6 +9,9 @@ import NewList from './components/News/NewList.vue';
 import NewDetail from './components/News/NewDetail.vue';
 import PicShare from './components/Photo/Share.vue';
 import PhotoDetail from './components/Photo/PhotoDetail.vue';
+import GoodsList from './components/Goods/GoodsList.vue';
+import GoodsDetail from './components/Goods/GoodsDetail.vue';
+import GoodsComments from './components/Goods/GoodsComments.vue';
 
 // 引入moment时间插件
 import Moment from 'moment';
@@ -61,6 +64,15 @@ router.addRoutes([
   },
   {
     name: 'picdetail', path: '/photo/detail', component: PhotoDetail
+  },
+  {
+    name: 'goods.list', path: '/goods/list', component: GoodsList
+  },
+  {
+    name: 'goods.detail', path: '/goods/detail', component: GoodsDetail
+  },
+  {
+    name: 'goods.comments', path: '/goods/comments', component: GoodsComments
   },
   {
     name: 'home', path: '/home', component: Home
