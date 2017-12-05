@@ -1,45 +1,43 @@
 <template>
-  <div class="templ">
-    <div class="cms-s-header">
-        <h1 >&nbsp<</h1>
-        <h1 class="page-title">Pull up</h1>
-    </div> 
-
+<div class="tmpl">
+    <nav-bar title="新闻列表"></nav-bar>
     <div class="demo">
       <ul>
         <li v-for="news in newList" :key="news.id">
-          <a href="#">
-            <img :src="news.img_url" alt="">
-            <div>
-              <span>{{news.title}}</span>
+          <router-link :to="{name: 'news.detail', query: { newsId: news.id }}">
+            <img class="" :src="news.img_url">
+            <div >
+              <span>{{news.title | convertTitle(13)}}</span>
               <div class="news-desc">
                 <p>点击数:{{news.click}}</p>
-                <p>发表时间: {{news.add_time}}</p>
+                <p>发表时间:{{news.add_time | convertTime}}</p>
               </div>
             </div>
-          </a>
+          </router-link>
         </li>
         <li class="line"></li>
-      </ul>
+        </ul>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        newList: []
-      }
-    },
-    created() {
-      this.$axios.get('getnewslist')
-      .then( res => {
-        // console.log(res);
-        this.newList = res.data.message;
-      })
-    }
+export default {
+  data() {
+    return {
+      newList: []
+    };
+  },
+  created() {
+    this.$axios.get("getnewslist").then(res => {
+      // console.log(res);
+      this.newList = res.data.message;
+    })
+    .catch( err => {
+      console.log('获取新闻列表失败',err)
+    })
   }
+};
 </script>
 <style scoped>
 .demo a {
@@ -78,20 +76,6 @@
   float: right;
 }
 
-.cms-s-header {
-  height: 40px;
-  background-color: #f7f7f7;
-}
-.tmpl h1 {
-  display: inline-block;
-  height: 40px;
-  line-height: 40px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-.page-title {
-  margin-left: 25%;
-}
 .line {
   margin-left: 16px;
   transform: scaleY(0.5);

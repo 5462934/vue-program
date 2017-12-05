@@ -9,12 +9,29 @@ import Search from './components/Search/Search.vue';
 import MyUl from './components/Commons/MyUl.vue';
 import MyLi from './components/Commons/MyLi.vue';
 import NewList from './components/News/NewList.vue';
+import NewDetail from './components/News/NewDetail.vue';
+import NavBar from './components/commons/NavBar.vue';
+// 引入moment时间插件
+import Moment from 'moment';
 // 设置全局组件
 // 组件名称，组件
 Vue.component(MyUl.name, MyUl);
 Vue.component(MyLi.name, MyLi);
+Vue.component(NavBar.name, NavBar);
 Vue.use(VueRouter);
 
+// 设置过滤器
+
+// 时间格式设置
+Vue.filter('convertTime', function (value) {
+  return Moment(value).format('YYYY-MM-DD')
+})
+// 标题过长显示...
+Vue.filter('convertTitle', function (value, limit) {
+  if (value.length > limit) {
+    return value.substr(0,limit) + '...';
+  }
+})
 var router = new VueRouter();
 
 router.addRoutes([
@@ -25,6 +42,9 @@ router.addRoutes([
     }
   }, {
     name: 'new.list', path: '/new/list', component: NewList
+  },
+  {
+    name: 'news.detail', path: '/news/detail', component: NewDetail 
   },
   {
     name: 'home', path: '/home', component: Home

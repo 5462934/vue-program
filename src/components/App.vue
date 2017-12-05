@@ -1,8 +1,8 @@
 <template>
   <div>
-    <mt-header title="多元化"></mt-header>
+    <mt-header title="信息管理系统"></mt-header>
     <router-view></router-view>     
-    <mt-tabbar v-model="selected">
+    <mt-tabbar id="footer-bar" v-model="selected">
       <mt-tab-item id="home">
          <img slot="icon" src="../static/img/index.png">
                 首页
@@ -40,6 +40,9 @@
 </script>
 
 <style encoped>
-
+#footer-bar {
+  position: fixed;
+  bottom: 0;
+}
 </style>
 

@@ -7,3 +7,11 @@ body {
     text-decoration: none;
     padding: 0;
 }
+
+.tmpl{
+    margin-bottom: 55px;
+}
+
+img {
+    width: 100%;
+}
