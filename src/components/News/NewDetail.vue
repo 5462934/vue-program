@@ -23,9 +23,10 @@
       let NewId = this.$route.query.newsId;
       this.$axios.get('getnew/' + NewId)
       .then( res => {
-        console.log(res);
+        // console.log(res);
         this.newDetail = res.data.message[0];
       })
+      .catch( err => console.log(err) );
     }
   }
 </script>

@@ -5,7 +5,7 @@
       <ul>
         <li v-for="news in newList" :key="news.id">
           <router-link :to="{name: 'news.detail', query: { newsId: news.id }}">
-            <img class="" :src="news.img_url">
+            <img class="" v-lazy="news.img_url">
             <div >
               <span>{{news.title | convertTitle(13)}}</span>
               <div class="news-desc">
@@ -29,7 +29,8 @@ export default {
     };
   },
   created() {
-    this.$axios.get("getnewslist").then(res => {
+    this.$axios.get("getnewslist")
+    .then(res => {
       // console.log(res);
       this.newList = res.data.message;
     })

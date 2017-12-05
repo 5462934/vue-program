@@ -1,30 +1,35 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-
 import App from './components/App.vue';
 import Home from './components/Home/Home.vue';
 import Member from './components/Member/Member.vue';
 import Shopcart from './components/Shopcart/Shopcart.vue';
 import Search from './components/Search/Search.vue';
-import MyUl from './components/Commons/MyUl.vue';
-import MyLi from './components/Commons/MyLi.vue';
 import NewList from './components/News/NewList.vue';
 import NewDetail from './components/News/NewDetail.vue';
-// 图文分享界面
 import PicShare from './components/Photo/Share.vue';
-// 新闻导航组建
-import NavBar from './components/commons/NavBar.vue';
+import PhotoDetail from './components/Photo/PhotoDetail.vue';
+
 // 引入moment时间插件
 import Moment from 'moment';
-// 设置全局组件
-// 组件名称，组件
+//引入vue-preview
+import VuePreview from 'vue-preview'
+//使用vue-preview
+Vue.use(VuePreview)
+
+// 设置全局组件 组件名称，组件
+import MyUl from './components/Commons/MyUl.vue';
+import MyLi from './components/Commons/MyLi.vue';
+import NavBar from './components/commons/NavBar.vue';
 Vue.component(MyUl.name, MyUl);
 Vue.component(MyLi.name, MyLi);
 Vue.component(NavBar.name, NavBar);
+
+
 Vue.use(VueRouter);
 
-// 设置过滤器
 
+// 设置过滤器
 // 时间格式设置
 Vue.filter('convertTime', function (value) {
   return Moment(value).format('YYYY-MM-DD')
@@ -32,25 +37,30 @@ Vue.filter('convertTime', function (value) {
 // 标题过长显示...
 Vue.filter('convertTitle', function (value, limit) {
   if (value.length > limit) {
-    return value.substr(0,limit) + '...';
+    return value.substr(0, limit) + '...';
   }
 })
+
+// 过滤器结束
+
 var router = new VueRouter();
 
 router.addRoutes([
   // 重定向到首页
   {
-    path: '/', redirect: {
-      name: 'home'
-    }
-  }, {
+    path: '/', redirect: { name: 'home' }
+  }, 
+  {
     name: 'new.list', path: '/new/list', component: NewList
   },
   {
-    name: 'news.detail', path: '/news/detail', component: NewDetail 
+    name: 'news.detail', path: '/news/detail', component: NewDetail
   },// 图文分享
   {
-    name: 'picshare', path: '/photo/list', component: PicShare
+    name: 'picshare', path: '/photo/list/:categoryId', component: PicShare
+  },
+  {
+    name: 'picdetail', path: '/photo/detail', component: PhotoDetail
   },
   {
     name: 'home', path: '/home', component: Home

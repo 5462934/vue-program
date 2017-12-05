@@ -42,7 +42,11 @@ module.exports = {
                 //处理vue
                 test:/\.vue$/,
                 loader:'vue-loader'
-            }
+            },
+            {
+                test: /vue-preview.src.*?js$/,
+                loader: 'babel-loader'
+            },
 
         ]
     },
