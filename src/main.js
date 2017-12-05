@@ -10,6 +10,9 @@ import MyUl from './components/Commons/MyUl.vue';
 import MyLi from './components/Commons/MyLi.vue';
 import NewList from './components/News/NewList.vue';
 import NewDetail from './components/News/NewDetail.vue';
+// 图文分享界面
+import PicShare from './components/Photo/Share.vue';
+// 新闻导航组建
 import NavBar from './components/commons/NavBar.vue';
 // 引入moment时间插件
 import Moment from 'moment';
@@ -45,6 +48,9 @@ router.addRoutes([
   },
   {
     name: 'news.detail', path: '/news/detail', component: NewDetail 
+  },// 图文分享
+  {
+    name: 'picshare', path: '/photo/list', component: PicShare
   },
   {
     name: 'home', path: '/home', component: Home

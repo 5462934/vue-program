@@ -35,7 +35,7 @@ export default {
         {
           className: "pic",
           title: "图文分享",
-          router: { name: 'new.list' }
+          router: { name: 'picshare' }
         },
         {
           className: "goods",
