@@ -25,10 +25,12 @@ import MyUl from './components/Commons/MyUl.vue';
 import MyLi from './components/Commons/MyLi.vue';
 import NavBar from './components/commons/NavBar.vue';
 import Comments from './components/Commons/Comment.vue';
+import Swipe from './components/Commons/Swipe.vue';
 Vue.component(MyUl.name, MyUl);
 Vue.component(MyLi.name, MyLi);
 Vue.component(NavBar.name, NavBar);
 Vue.component(Comments.name, Comments);
+Vue.component(Swipe.name, Swipe);
 
 
 Vue.use(VueRouter);
@@ -41,9 +43,11 @@ Vue.filter('convertTime', function (value) {
 })
 // 标题过长显示...
 Vue.filter('convertTitle', function (value, limit) {
+  if (!value) return;
   if (value.length > limit) {
     return value.substr(0, limit) + '...';
   }
+  return value;
 })
 
 // 过滤器结束

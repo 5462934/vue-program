@@ -1,12 +1,6 @@
 <template>
   <div>
-    <mt-swipe :show-indicators="false">
-      <mt-swipe-item v-for="(pic, index) in imgs" :key="index">
-        <a :href="pic.url">
-          <img :src="pic.img" alt="">
-        </a>
-      </mt-swipe-item>
-    </mt-swipe>
+    <my-swipe url="getlunbo"></my-swipe>
 
     <!-- 九宫格 -->
     <my-ul>
@@ -25,7 +19,6 @@
 export default {
   data() {
     return {
-      imgs: [],
       homeRouters: [
         {
           className: "news",
@@ -40,7 +33,7 @@ export default {
         {
           className: "goods",
           title: "商品列表",
-          router: { name: 'goods.list', query: { pageIndex: 1}}
+          router: { name: 'goods.list', query: { page: 1}}
         },
         {
           className: "feedback",
@@ -71,12 +64,7 @@ export default {
 </script>
 
 <style scoped>
-.mint-swipe-item img {
-  width: 100%;
-}
-.mint-swipe {
-  height: 225px;
-}
+
 /*九宫格样式*/
 .back-img {
   background-size: 50px;
