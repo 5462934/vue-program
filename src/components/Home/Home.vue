@@ -40,7 +40,7 @@ export default {
         {
           className: "goods",
           title: "商品列表",
-          router: { name: 'goods.list' }
+          router: { name: 'goods.list', query: { pageIndex: 1}}
         },
         {
           className: "feedback",

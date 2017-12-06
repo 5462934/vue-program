@@ -5,7 +5,7 @@
 			<li v-for="list in goodslist" :key="list.id">
 				<router-link :to="{ name: 'goods.detail', query: {goodsId: list.id}}">
 					<img v-lazy="list.img_url">
-					<div class="title">{{list.title}}</div>
+					<div class="title">{{list.title | convertTitle(10)}}</div>
 					<div class="desc">
 						<div class="sell">
 							<span>￥{{list.sell_price}}</span>
@@ -33,7 +33,8 @@
 			}
 		},
 		created() {
-			this.$axios.get('getgoods?pageindex=1')
+			let pageIndex = this.$route.query.pageIndex;
+			this.$axios.get(`getgoods?pageindex=${pageIndex}`)
 			.then( res => {
 				// console.log(res)
 				this.goodslist = res.data.message;

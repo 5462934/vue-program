@@ -1,9 +1,9 @@
 <template>
- 	<div>
+	<div>
 		<nav-bar title="商品详情"></nav-bar>
 		<div class="outer-swiper">
 			<div class="swiper">
-				 <img :src="goodsImg.thumb_path" alt="">
+				<img :src="goodsImg.thumb_path" alt="">
 			</div>
 		</div>
 		<div class="product-desc">
@@ -14,9 +14,9 @@
 					</span>
 				</li>
 				<li class="price-li">
-          市场价：
-					<s>￥{{goodsInfo.market_price}}</s> 
-          销售价：
+					市场价：
+					<s>￥{{goodsInfo.market_price}}</s>
+					销售价：
 					<span>￥{{goodsInfo.sell_price}}</span>
 				</li>
 				<li class="number-li">购买数量：
@@ -36,8 +36,8 @@
 			<ul>
 				<li>商品参数</li>
 				<li>商品货号：123441231</li>
-				<li>库存情况：{{goodsInfo.stock_quantity
-}}件</li>
+				<li>库存情况：{{goodsInfo.stock_quantity }}件
+				</li>
 				<li>上架时间：{{goodsInfo.add_time | convertTime}}</li>
 			</ul>
 		</div>
@@ -47,19 +47,15 @@
 					<mt-button type="primary" size="large" plain>图文介绍</mt-button>
 				</li>
 				<li>
-
-					
-                        <router-link :to="{ name: 'goods.comments', query: { goodsId: goodsInfo.id }}">
-                            <mt-button type="danger" size="large" plain>
-                                商品评论
-                            </mt-button> 
-                        </router-link>
-                    
+					<router-link :to="{ name: 'goods.comments', query: { cid: goodsInfo.id }}">
+					<mt-button type="danger" size="large" plain>
+						商品评论
+					</mt-button>
+					</router-link>
 				</li>
 			</ul>
 		</div>
 	</div>
-   
 </template>
 <script>
   export default {

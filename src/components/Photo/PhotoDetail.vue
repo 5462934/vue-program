@@ -15,6 +15,7 @@
         <div class="photo-desc">
             <p v-html="imgdetail.content"></p>
         </div>
+        <mycomments :cid="$route.query.imgId"></mycomments>
     </div>
 </template>
 <script>
@@ -22,7 +23,7 @@ export default {
   data() {
     return {
       imgs: [],
-      imgdetail: []
+      imgdetail: [],
     };
   },
   created() {
