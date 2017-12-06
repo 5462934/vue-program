@@ -48,9 +48,13 @@
 				</li>
 				<li>
 
-					<mt-button type="danger" size="large" plain>
-            商品评论
-          </mt-button>
+					
+                        <router-link :to="{ name: 'goods.comments', query: { goodsId: goodsInfo.id }}">
+                            <mt-button type="danger" size="large" plain>
+                                商品评论
+                            </mt-button> 
+                        </router-link>
+                    
 				</li>
 			</ul>
 		</div>
@@ -69,7 +73,7 @@
       let goodsId = this.$route.query.goodsId;
       this.$axios.get('goods/getinfo/' + goodsId)
       .then( res => {
-        // console.log(res);
+        console.log(res);
         this.goodsInfo = res.data.message[0];
       })
       .catch( err => {
@@ -78,7 +82,7 @@
 
       this.$axios.get('goods/getshopcarlist/' + goodsId)
       .then( res => {
-        // console.log(res);
+        console.log(res);
         this.goodsImg = res.data.message[0];
       })
       .catch( err => {
