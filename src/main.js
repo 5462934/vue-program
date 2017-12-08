@@ -109,6 +109,21 @@ import Axios from 'axios';
 Vue.prototype.$axios = Axios;
 Axios.defaults.baseURL = "http://vue.studyit.io/api/";
 
+
+
+// 拦截器中实现loadding图标
+Axios.interceptors.request.use( config => {
+  MintUi.Indicator.open({
+    text: '玩命加载中..',
+    spinnerType: 'triple-bounce'
+  })
+  return config;
+})
+Axios.interceptors.response.use(response => {
+  MintUi.Indicator.close();
+  return response;
+});
+
 new Vue({
   el: '#app',
   router,

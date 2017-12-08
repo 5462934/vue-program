@@ -1,6 +1,5 @@
 <template>
   <div>
-    <mt-tabbar id="footer-bar" v-model="selected">
     <mt-header ref="header" title="信息管理系统"></mt-header>
     <router-view class="tmpl" :appRefs="$refs"></router-view>     
     <mt-tabbar id="footer-bar"  ref="footer" v-model="selected">

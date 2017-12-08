@@ -27,12 +27,14 @@
 				</li>
 				<li>
 					<mt-button type="primary">立即购买</mt-button>
-					<mt-button type="danger">加入购物车</mt-button>
+					<mt-button type="danger" @click="addShopcart">加入购物车</mt-button>
 				</li>
 			</ul>
 		</div>
 
-		<div class="ball"></div>
+		<transition name="myball" v-on:after-enter="afterEnter">
+    <div class="ball" v-if="showBall"></div>
+    </transition>
 		<div class="product-props">
 			<ul>
 				<li>商品参数</li>
@@ -59,6 +61,7 @@
 	</div>
 </template>
 <script>
+import GoodsTools from '../Commons/GoodsTools.js'
 export default {
   data() {
     return {
@@ -66,12 +69,13 @@ export default {
       goodsImg: [],
 			buyNums: 1,
 			num: '', // 购买总量
-			swipeUrl: '',
+      swipeUrl: '',
+      showBall: false, // 小球是否存在
     };
   },
   methods: {
 		buyCutNum() {
-			if (this.buyNums <= 0) {
+			if (this.buyNums <= 1) {
         this.$toast({
           message: "已经降到最低咯",
           duration: 2000
@@ -91,6 +95,19 @@ export default {
       } else {
 				return this.buyNums++;
       }
+    },
+    addShopcart() {
+      this.showBall = true;// 插入小球，触发v-enter-active的动画
+
+      GoodsTools.addOrUpdate({
+        id: this.goodsInfo.id,
+        num: this.buyNums
+      })
+
+    },
+    afterEnter() {
+      // 过度元素进入后，动画完毕，将小球移除
+      this.showBall = false;
     }
   },
   created() {
@@ -99,7 +116,7 @@ export default {
     this.$axios
       .get("goods/getinfo/" + goodsId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.goodsInfo = res.data.message[0];
       })
       .catch(err => {
@@ -109,7 +126,7 @@ export default {
     this.$axios
       .get("goods/getshopcarlist/" + goodsId)
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.goodsImg = res.data.message[0];
       })
       .catch(err => {
@@ -122,7 +139,7 @@ export default {
 		this.$axios.get(`goods/getinfo/${goodsId}`)
     .then(res=>{
       this.goodsInfo = res.data.message[0];
-      console.log(this.goodsInfo);
+      // console.log(this.goodsInfo);
     })
     .catch(err=>console.log(err));
     next();
@@ -130,7 +147,10 @@ export default {
 };
 </script>
 <style scoped>
-.ball-enter-active {
+.myball-leave {
+  opacity: 0;
+}
+.myball-enter-active {
   animation: bounce-in 1s;
 }
 
